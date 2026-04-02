@@ -1,15 +1,15 @@
 # Site Configuration
 [site]
-  title            = "Folex" # Shared title for SEO and OpenGraph
+  title            = "Karma Works Studio" # Shared title for SEO and OpenGraph
   description      = "A highly customizable creative agency business theme built with Tailwind CSS and Astro Js" # Shared description for SEO and OpenGraph
   tagline          = "Creative Agency & Personal Portfolio Business Theme"
-  taglineSeparator = "" # default is " - " 
+  taglineSeparator = "" # default is " - "
   baseUrl          = "https://folex-lite-astro.vercel.app/" # Base URL for the site and used in OpenGraph meta tags.
-  logo             = "/images/logo.svg" # Path to the site's logo
-  logoAlternate    = "/images/logo-light.svg" # Path to the site's alternate logo
+  logo             = "/images/logo.png" # Path to the site's logo
+  logoAlternate    = "/images/logo-light.png" # Path to the site's alternate logo
   logoText         = "" # Text displayed next to the logo
-  logoWidth        = "86px" # Width of the logo
-  logoHeight       = "24px" # Height of the logo
+  logoWidth        = "120px" # Width of the logo
+  logoHeight       = "41px" # Height of the logo
 
   # Add a trailing slash at the end of URLs (e.g., https://example.com/, https://example.com/contact/)
   # Note: Manually restart your server when you change this value
@@ -86,15 +86,15 @@
 
   # Global Contact Information
   [settings.contactInfo]
-    address = "27 Division St, New York, <br /> NY 10002, USA"
+    address = "Navi Mumbai, <br />🇮🇳 India"
     email   = "[folex.agency@mail.com](mailto:folex.agency@mail.com)"
-    phone   = "[+1 800 123 654 987](tel:+1800123654987)"
+    phone   = "[+91 816 994 9676](tel:+918169949776)"
 
   # Header Offcanvas Configuration
   # Update social links in `src/config/social.json`
   [settings.headerOffcanvas]
     enable      = true
-    logo        = "/images/logo-light.svg"
+    logo        = "/images/logo-light.png"
     description = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the description in different languages or directly add value here if you are not using internationalization feature. This is also used in footer of personal-portfolio homepage
 
     # Call To Action Button
