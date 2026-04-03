@@ -8,14 +8,14 @@
     "paginationPortfolioNext": "Next Portfolio"
   },
   "headerOffcanvas": {
-    "description": "We are a digital agency that helps businesses create immersive experiences.",
-    "buttonLabel": "Let’s Talk With Us"
+    "description": "We are a software development agency that helps businesses create polished products.",
+    "buttonLabel": "Let's Talk With Us"
   },
   "navigation": {
     "buttonLabel": "Get Started"
   },
   "footer": {
-    "copyright": "Copyright © {{ year }} by your company / Crafted with [Getastrothemes](https://getastrothemes.com/)",
+    "copyright": "© {{ year }} Karma Works Studio / Built with intent, not noise.",
     "_comment": "We kindly appreciate it if you retain the theme copyright. Thank you for supporting Getastrothemes!"
   }
 }

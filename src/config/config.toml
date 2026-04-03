@@ -1,21 +1,19 @@
 # Site Configuration
 [site]
-  title            = "Karma Works Studio" # Shared title for SEO and OpenGraph
-  description      = "A highly customizable creative agency business theme built with Tailwind CSS and Astro Js" # Shared description for SEO and OpenGraph
-  tagline          = "Creative Agency & Personal Portfolio Business Theme"
+  title            = "Karma Works Studio"
+  description      = "We design and develop focused digital products — from idea to execution."
+  tagline          = "Creative Software Development Agency"
   taglineSeparator = "" # default is " - "
-  baseUrl          = "https://folex-lite-astro.vercel.app/" # Base URL for the site and used in OpenGraph meta tags.
+  baseUrl          = "https://karmaworksstudio.com/"
   logo             = "/images/logo.png" # Path to the site's logo
   logoAlternate    = "/images/logo-light.png" # Path to the site's alternate logo
-  logoText         = "" # Text displayed next to the logo
-  logoWidth        = "120px" # Width of the logo
-  logoHeight       = "41px" # Height of the logo
-
+  logoText         = "Karma Works Studio Logo"
+  logoWidth        = "120px"
+  logoHeight       = "41px"
   # Add a trailing slash at the end of URLs (e.g., https://example.com/, https://example.com/contact/)
   # Note: Manually restart your server when you change this value
-  trailingSlash = true
+  trailingSlash    = true
 
-  # Add your site logo in image path below and open your terminal and run "npm run generate-favicons" to generate favicons for different devices and platform (https://realfavicongenerator.net/checker)
   [site.favicon]
     path  = "/images/favicons" # favicon images path (No need to change it)
     image = "/images/favicon.png" # Add your site logo path here and follow upper instruction
@@ -25,13 +23,12 @@
 # Specific SEO configurations that complement the general site settings.
 # -----------------------------------------------------------------------------------------------------------------------------------
 [seo]
-  author = "Getastrothemes"
+  author = "Karma Works Studio"
   keywords = [
-    "free digital agency",
-    "free astro template",
-    "free astro theme",
-    "free astro agency template",
-    "free astro agency theme",
+    "web development",
+    "product development",
+    "UI implementation",
+    "system design",
   ]
   robots = "index, follow" # Instructs search engines on how to crawl and index the pages.
 
@@ -79,16 +76,16 @@
   [settings.multilingual]
     # Set `enable` to `true` for enabling the multilingual feature or `false` for disabling it.
     # Run `npm run remove-multilingual` for removing multilingual content files after disabling the feature.
-    enable               = true
+    enable               = false
     defaultLanguage      = "en"
     disableLanguages     = [] # List of languages to disable (eg: ["fr", "es"])
     showDefaultLangInUrl = false # Show default language in URL (eg: https://getastrothemes.com/en/)
 
   # Global Contact Information
   [settings.contactInfo]
-    address = "Navi Mumbai, <br />🇮🇳 India"
-    email   = "[folex.agency@mail.com](mailto:folex.agency@mail.com)"
-    phone   = "[+91 816 994 9676](tel:+918169949776)"
+    address = "Navi Mumbai, India 🇮🇳"
+    email   = "[hello@karmaworks.studio](mailto:hello@karmaworks.studio)"
+    phone   = "[+91 816 994 9676](tel:+918169949676)"
 
   # Header Offcanvas Configuration
   # Update social links in `src/config/social.json`
