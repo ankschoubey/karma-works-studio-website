@@ -7,7 +7,7 @@
   baseUrl          = "https://karmaworksstudio.com/"
   logo             = "/images/logo.png" # Path to the site's logo
   logoAlternate    = "/images/logo-light.png" # Path to the site's alternate logo
-  logoText         = "Karma Works Studio Logo"
+  logoText         = ""
   logoWidth        = "120px"
   logoHeight       = "41px"
   # Add a trailing slash at the end of URLs (e.g., https://example.com/, https://example.com/contact/)
