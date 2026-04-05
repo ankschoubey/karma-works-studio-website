@@ -25,6 +25,7 @@ let {
   enable = true,
   title,
   subtitle,
+  closingText,
   options: { appearance } = {},
   list,
 } = actualContent || {};
@@ -66,5 +67,14 @@ if (!enable) {
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {list?.map((item) => <HowWeWorkCard content={item} />)}
     </div>
+
+    {
+      closingText && (
+        <p
+          class="mx-auto max-w-xl text-center text-lg text-black/70"
+          set:html={markdownify(closingText)}
+        />
+      )
+    }
   </div>
 </section>

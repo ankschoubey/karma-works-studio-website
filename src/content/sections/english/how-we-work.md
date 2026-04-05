@@ -4,6 +4,8 @@ title: "How We Work"
 
 subtitle: "Simple. Structured. Built for steady progress."
 
+closingText: "We don't overpromise. We scope clearly, build carefully, and deliver what's agreed—no surprises."
+
 list:
   - enable: true
     title: "Focused Execution"

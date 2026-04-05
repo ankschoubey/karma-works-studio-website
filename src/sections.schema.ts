@@ -188,6 +188,7 @@ export const howWeWorkSectionSchema = z
     enable: z.boolean().default(false),
     title: z.string().optional(),
     subtitle: z.string().optional(),
+    closingText: z.string().optional(),
     options: z
       .object({
         appearance: AppearanceEnum,
