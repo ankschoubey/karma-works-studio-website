@@ -1,0 +1,44 @@
+---
+import Icons from "@/helpers/Icons.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+type Props = {
+  content: {
+    enable: boolean;
+    title: string;
+    description?: string;
+    items: string[];
+  };
+  class?: string;
+  [key: string]: any;
+};
+
+const {
+  class: className,
+  content: { enable, title, description, items },
+  ...rest
+} = Astro.props;
+---
+
+{enable && (
+  <div
+    class:list={["bg-theme-light flex flex-col space-y-6 p-8", className]}
+    {...rest}>
+    {title && (
+      <h3 class="text-h5 md:text-h4 font-semibold" set:html={markdownify(title)} />
+    )}
+    {description && (
+      <p class="text-sm font-medium text-black/70" set:html={markdownify(description)} />
+    )}
+    {items && (
+      <ul class="space-y-4 text-sm font-medium text-black">
+        {items.map((item: string) => (
+          <li class="flex items-start gap-3">
+            <Icons icon="Check" class="mt-0.5 shrink-0 text-xl" />
+            <span set:html={markdownify(item)} />
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+)}

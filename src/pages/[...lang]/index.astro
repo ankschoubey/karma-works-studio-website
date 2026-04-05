@@ -7,6 +7,7 @@ import BannerAgencyStartup from "@/components/sections/Banner.astro";
 import PricingSection from "@/components/sections/PricingSection.astro";
 import ServicesSection from "@/components/sections/ServicesSection.astro";
 import PortfolioSection from "@/components/sections/PortfolioSection.astro";
+import HowWeWorkSection from "@/components/sections/HowWeWorkSection.astro";
 
 export function getStaticPaths() {
   return generatePaths();
@@ -21,5 +22,6 @@ const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
   <PortfolioSection layout="grid" />
   <Clients />
 
+  <HowWeWorkSection />
   <PricingSection />
 </Base>

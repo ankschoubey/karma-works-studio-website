@@ -183,9 +183,34 @@ export const bannerAgencySectionSchema = z
   })
   .optional();
 
+export const howWeWorkSectionSchema = z
+  .object({
+    enable: z.boolean().default(false),
+    title: z.string().optional(),
+    subtitle: z.string().optional(),
+    options: z
+      .object({
+        appearance: AppearanceEnum,
+      })
+      .partial()
+      .optional(),
+    list: z
+      .array(
+        z.object({
+          enable: z.boolean().default(false),
+          title: z.string(),
+          description: z.string().optional(),
+          items: z.array(z.string()),
+        }),
+      )
+      .optional(),
+  })
+  .optional();
+
 export const sectionsSchema = {
   servicesSection: servicesSectionSchema,
   clientsSection: clientsSectionSchema,
   bannerAgencySection: bannerAgencySectionSchema,
   pricingSection: pricingSectionSchema,
+  howWeWorkSection: howWeWorkSectionSchema,
 };

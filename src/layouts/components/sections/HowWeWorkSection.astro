@@ -1,0 +1,72 @@
+---
+import type { z } from "astro/zod";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import type { howWeWorkSectionSchema } from "@/sections.schema";
+import HowWeWorkCard from "@/layouts/components/cards/HowWeWorkCard.astro";
+
+type howWeWorkSection = NonNullable<z.infer<typeof howWeWorkSectionSchema>>;
+
+type Props = {
+  content?: howWeWorkSection;
+};
+
+let defaultContent = (
+  await getEntryCTM("sections", "how-we-work", Astro.currentLocale)
+)?.data as howWeWorkSection;
+
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as howWeWorkSection;
+
+let {
+  enable = true,
+  title,
+  subtitle,
+  options: { appearance } = {},
+  list,
+} = actualContent || {};
+
+const isDarkAppearance = appearance === "dark";
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div class="container space-y-14">
+    {
+      (title || subtitle) && (
+        <div class="mx-auto max-w-3xl text-center">
+          {title && (
+            <h2
+              class:list={[
+                "text-h1-sm md:text-h1",
+                isDarkAppearance ? "text-light" : "text-inherit",
+              ]}
+              set:html={markdownify(title)}
+            />
+          )}
+          {subtitle && (
+            <p
+              class:list={[
+                "mt-4 text-lg",
+                isDarkAppearance ? "text-light/80" : "text-inherit/80",
+              ]}
+              set:html={markdownify(subtitle)}
+            />
+          )}
+        </div>
+      )
+    }
+
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+      {list?.map((item) => (
+        <HowWeWorkCard content={item} />
+      ))}
+    </div>
+  </div>
+</section>
