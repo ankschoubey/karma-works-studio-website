@@ -64,9 +64,7 @@ if (!enable) {
     }
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-      {list?.map((item) => (
-        <HowWeWorkCard content={item} />
-      ))}
+      {list?.map((item) => <HowWeWorkCard content={item} />)}
     </div>
   </div>
 </section>
