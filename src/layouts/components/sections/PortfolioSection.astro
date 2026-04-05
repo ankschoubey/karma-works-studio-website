@@ -35,7 +35,7 @@ let actualContent = overrideObjects(
 const t = await useTranslations(Astro.currentLocale as string);
 
 // Extracting required values from 'content' object
-let { enable = true, title, options } = actualContent as PortfolioInterface;
+let { enable = true, title, description, options } = actualContent as PortfolioInterface;
 
 const { layout, appearance, limit } = options || {};
 
@@ -69,6 +69,17 @@ if (!enable) {
               isDarkAppearance && "text-light",
             ]}
             set:html={markdownify(title)}
+          />
+        )
+      }
+      {
+        description && (
+          <p
+            class:list={[
+              "mx-auto max-w-3xl text-center text-lg",
+              isDarkAppearance ? "text-light/80" : "text-inherit/80",
+            ]}
+            set:html={markdownify(description)}
           />
         )
       }
