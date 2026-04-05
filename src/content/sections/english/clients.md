@@ -4,7 +4,7 @@ title: ""
 
 list:
   - alt: "Svaaya"
-    src: "/images/clients/svaaya-logo.svg"
+    src: "/images/clients/svaaya-logo.png"
 
 options:
   appearance: "light" # light / dark
