@@ -15,6 +15,7 @@ export type PortfolioInterface = Section & {
 
 type Props = {
   content?: PortfolioInterface;
+  layout: "grid" | "list" | "masonry";
 };
 
 // Fetching the default content for the this section
@@ -72,11 +73,23 @@ if (!enable) {
         )
       }
       {
-        layout === "masonry" || layout === "grid" ? (
+        layout === "masonry" ? (
+          <div class="gap-x-20 lg:columns-2">
+            {projects.map((item, index) => (
+              <PortfolioCard
+                class:list={["space-y-4 overflow-hidden"]}
+                options={options}
+                translations={t}
+                content={item}
+                index={index}
+              />
+            ))}
+          </div>
+        ) : layout === "grid" ? (
           <div
             class:list={[
-              "gap-x-20 lg:columns-2",
-              layout === "grid" && "space-y-10",
+              "grid gap-x-20 gap-y-10 justify-items-center",
+              projects.length === 1 ? "md:grid-cols-1 lg:grid-cols-1" : "md:grid-cols-2 lg:grid-cols-3",
             ]}>
             {projects.map((item, index) => (
               <PortfolioCard

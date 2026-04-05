@@ -36,22 +36,18 @@ const isDarkAppearance = options?.appearance === "dark";
 
 {
   layout === "masonry" || layout === "grid" ? (
-    // For Masonry and Grid Layouts
     <div
       class:list={[
         className,
-        "group",
-        layout === "grid" && "flex flex-col items-start justify-start",
+        "group space-y-4",
+        layout === "grid" && "flex flex-col items-center text-center",
         isDarkAppearance ? "text-white" : "text-text-default",
       ]}
       {...rest}>
       {image && (
         <a
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
-          class:list={[
-            "order-1 inline-block w-full overflow-hidden",
-            layout === "grid" && "mb-8",
-          ]}
+          class="w-full overflow-hidden"
           href={slug}
           {...{
             "data-aos":
@@ -63,18 +59,25 @@ const isDarkAppearance = options?.appearance === "dark";
           <OptimizedImage
             src={image}
             alt={title || "Project image"}
-            class:list={[
-              "h-100 scale-110 object-cover transition duration-500 group-hover:translate-x-2",
-            ]}
+            class="h-100 w-full scale-110 object-cover transition duration-500 group-hover:translate-x-2"
           />
         </a>
+      )}
+
+      {title && (
+        <h3 class="text-h3-sm md:text-h3 leading-snug text-inherit">
+          <a
+            href={slug}
+            title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
+            {title}
+          </a>
+        </h3>
       )}
 
       {hasCategories && (
         <ul
           class:list={[
-            "flex flex-wrap items-center gap-x-2 gap-y-1 opacity-80",
-            layout === "grid" && "order-3 mt-3",
+            "flex flex-wrap items-center justify-center gap-x-2 gap-y-1 opacity-80",
             isDarkAppearance ? "text-light" : "text-inherit",
           ]}>
           {categories.map((category: string, index: number) => (
@@ -86,17 +89,7 @@ const isDarkAppearance = options?.appearance === "dark";
         </ul>
       )}
 
-      {title && (
-        <h3 class="text-h3-sm md:text-h3 order-2 leading-snug text-inherit">
-          <a
-            href={slug}
-            title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
-            {title}
-          </a>
-        </h3>
-      )}
-
-      {description && <p class="mt-4" set:html={markdownify(description)} />}
+      {description && <p class="text-pretty" set:html={markdownify(description)} />}
     </div>
   ) : layout === "slider" ? (
     <div class="py-8 text-center text-sm text-gray-400 italic">
