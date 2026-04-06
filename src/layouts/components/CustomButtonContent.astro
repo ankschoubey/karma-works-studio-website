@@ -1,5 +1,5 @@
 ---
-const { label, title, isCreativeHoverEffect } = Astro.props;
+const { label, title, isCreativeHoverEffect, icon } = Astro.props;
 
 // Check if the label contain "learn more" "read more" type of text that need to add support for accessibility
 let addAriaLabel = false;
@@ -11,6 +11,7 @@ if (
 }
 ---
 
+{icon && <span class="" set:html={icon} />}
 <Fragment set:html={label} />
 {addAriaLabel && <span class="sr-only" set:html={title} />}
 
