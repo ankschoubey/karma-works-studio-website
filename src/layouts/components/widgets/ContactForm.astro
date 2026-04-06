@@ -164,9 +164,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
         {input.dropdown ? (
           <div id="validation-target">
             <select
-              {...(input.id && { id: input.id })}
+              {...(input.id ? { id: input.id } : {})}
               data-name={input.name || input.label || "Please set name value"}
-              {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
+              {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
               data-hs-select={JSON.stringify(
                 getPrelineSelectConfig({
                   placeholder: input.placeholder || "Please set placeholder",
@@ -178,7 +178,7 @@ const getJotFormFieldName = (input: any): string | undefined => {
               <option value="">Choose</option>
               {input.dropdown?.items?.map((option) => (
                 <option
-                  {...(option.selected && { selected: true })}
+                  {...(option.selected ? { selected: true } : {})}
                   value={option.value}>
                   {option.label}
                 </option>
@@ -197,8 +197,8 @@ const getJotFormFieldName = (input: any): string | undefined => {
             name={input.name || input.label || "Please set name value"}
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
-            {...(input.required && { required: true })}
-            {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
+            {...(input.required ? { required: true } : {})}
+            {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
             set:html={input.defaultValue || ""}
           />
         ) : input.items ? (
@@ -221,7 +221,7 @@ const getJotFormFieldName = (input: any): string | undefined => {
                   class:list={[
                     input.type === "radio" ? "form-radio" : "form-checkbox",
                   ]}
-                  {...(input.required && { required: true })}
+                  {...(input.required ? { required: true } : {})}
                 />
                 <label
                   for={input.id || genIdFromLabel(input.label || "example-id")}
@@ -248,7 +248,7 @@ const getJotFormFieldName = (input: any): string | undefined => {
               class:list={[
                 input.type === "radio" ? "form-radio" : "form-checkbox",
               ]}
-              {...(input.required && { required: true })}
+              {...(input.required ? { required: true } : {})}
             />
             <label
               for={input.id || genIdFromLabel(input.label || "example-id")}
@@ -292,21 +292,19 @@ const getJotFormFieldName = (input: any): string | undefined => {
               name={input.name || input.label || "Please set name value"}
               placeholder={input.placeholder || "Phone Number"}
               class="form-input flex-1"
-              {...(input.required && { required: true })}
-              {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
+              {...(input.required ? { required: true } : {})}
+              {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
             />
           </div>
         ) : (
           <input
-            {...(input.defaultValue && {
-              value: input.defaultValue,
-            })}
+            {...(input.defaultValue ? { value: input.defaultValue } : {})}
             type={input.type || "text"}
             name={input.name || input.label || "Please set name value"}
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
-            {...(input.required && { required: true })}
-            {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
+            {...(input.required ? { required: true } : {})}
+            {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
           />
         )}
       </div>
@@ -335,6 +333,68 @@ const getJotFormFieldName = (input: any): string | undefined => {
     )
   }
 </form>
+
+<div
+  id="form-success-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="success-modal-title"
+>
+  <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 relative animate-[fadeIn_0.3s_ease-out]">
+    <button
+      id="close-success-modal"
+      type="button"
+      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+      aria-label="Close modal"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+    
+    <div class="text-center">
+      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      
+      <h3 id="success-modal-title" class="text-2xl font-bold text-gray-900 mb-4">
+        Thank You!
+      </h3>
+      
+      <p class="text-gray-600 leading-relaxed">
+        Your enquiry has been submitted successfully. Our team will review your details and get back to you within 24–48 hours. You'll receive a response on your provided contact information.
+      </p>
+      
+      <button
+        id="success-modal-close-btn"
+        type="button"
+        class="mt-8 px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
+      >
+        Got it
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  #form-success-modal:not(.hidden) {
+    animation: fadeIn 0.3s ease-out;
+  }
+</style>
 
 <script>
   import "@preline/select";
@@ -501,6 +561,48 @@ const getJotFormFieldName = (input: any): string | undefined => {
             form,
           );
         }
+      }
+    });
+
+    // Success Modal Handler
+    const modal = document.getElementById("form-success-modal");
+    const closeBtn = document.getElementById("close-success-modal");
+    const closeBtn2 = document.getElementById("success-modal-close-btn");
+
+    function removeQueryParam() {
+      const url = new URL(window.location.href);
+      url.searchParams.delete("formSubmitted");
+      window.history.replaceState({}, "", url.toString());
+    }
+
+    function closeModal() {
+      modal?.classList.add("hidden");
+      document.body.style.overflow = "";
+      removeQueryParam();
+    }
+
+    // Check URL params on load
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("formSubmitted") === "true" && modal) {
+      modal.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    // Close modal handlers
+    closeBtn?.addEventListener("click", closeModal);
+    closeBtn2?.addEventListener("click", closeModal);
+
+    // Close on backdrop click
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+        closeModal();
       }
     });
   });
