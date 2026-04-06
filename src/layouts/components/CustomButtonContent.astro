@@ -4,17 +4,21 @@ const { label, title, isCreativeHoverEffect, icon } = Astro.props;
 // Check if the label contain "learn more" "read more" type of text that need to add support for accessibility
 let addAriaLabel = false;
 if (
-  label.toLowerCase().includes("learn more") ||
-  label.toLowerCase().includes("read more")
+  label?.toLowerCase().includes("learn more") ||
+  label?.toLowerCase().includes("read more")
 ) {
   addAriaLabel = true;
 }
 ---
 
-<span class="inline-flex items-center gap-2 align-bottom">
-  {icon && <span set:html={icon} />}
-  <span><Fragment set:html={label} /></span>
-  {addAriaLabel && <span class="sr-only" set:html={title} />}
-</span>
+{icon && icon.trim() && !label ? (
+  <span set:html={icon} />
+) : (
+  <span class="inline-flex items-center gap-2 align-bottom">
+    {icon && icon.trim() && <span set:html={icon} />}
+    <span><Fragment set:html={label} /></span>
+    {addAriaLabel && <span class="sr-only" set:html={title} />}
+  </span>
+)}
 
 {isCreativeHoverEffect && <span class="hover-bg" />}

@@ -20,6 +20,9 @@ const t = await useTranslations(Astro.currentLocale as string);
 
 const { offcanvas } = Astro.props;
 
+const whatsappNumber = "918169949676";
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
+
 if (!enable) {
   return null;
 }
@@ -69,8 +72,10 @@ if (!enable) {
   <CustomButton
     variant="circle"
     hoverEffect="creative-fill"
+    url={whatsappLink}
+    target="_blank"
+    rel="noopener noreferrer"
     class="btn-accent m-0 ms-auto hidden justify-center lg:flex"
-    {...button}
     label={button?.label || t("headerOffcanvas.buttonLabel")}
   />
 </div>

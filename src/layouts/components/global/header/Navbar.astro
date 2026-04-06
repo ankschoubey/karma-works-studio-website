@@ -16,6 +16,8 @@ main = filteredEnabled(main);
 
 const { isMobile } = Astro.props;
 const { navigationButton } = config.settings;
+const whatsappNumber = "918169949676";
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
 ---
 
 <ul
@@ -30,8 +32,11 @@ const { navigationButton } = config.settings;
         <CustomButton
           hoverEffect="creative-fill"
           class="btn-accent effect-color-dark"
-          {...navigationButton}
+          url={whatsappLink}
+          target="_blank"
+          rel="noopener noreferrer"
           label={navigationButton.label || t("navigation.buttonLabel")}
+          icon={t("navigation.whatsappIcon")}
         />
       </li>
     )

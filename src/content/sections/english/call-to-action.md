@@ -3,7 +3,7 @@
 enable: true # Control the visibility of this section across all pages where it is used
 title: "Let’s Work Together"
 description: |
-  We are digital agency that helps businesses develop immersive and engaging user experiences
+  We are development agency that helps businesses develop immersive and engaging user experiences
 
 button:
   enable: true

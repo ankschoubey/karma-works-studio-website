@@ -26,6 +26,9 @@ const {
   hideOffcanvas,
   class: ClassName,
 } = Astro.props;
+
+const whatsappNumber = "918169949676";
+const whatsappLink = `https://wa.me/${whatsappNumber}`;
 ---
 
 <header
@@ -69,8 +72,11 @@ const {
               <CustomButton
                 variant="fill"
                 hoverEffect="creative-fill"
-                {...navigationButton}
+                url={whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
                 label={navigationButton.label || t("navigation.buttonLabel")}
+                icon={t("navigation.whatsappIcon")}
                 class:list={[
                   hasDarkBackground
                     ? "btn-accent effect-color-dark"
