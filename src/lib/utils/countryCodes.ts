@@ -47,7 +47,6 @@ export const countryCodes = [
   { code: "+81", country: "JP", flag: "🇯🇵", name: "Japan" },
   { code: "+86", country: "CN", flag: "🇨🇳", name: "China" },
   { code: "+852", country: "HK", flag: "🇭🇰", name: "Hong Kong" },
-  { code: "+65", country: "SG", flag: "🇸🇬", name: "Singapore" },
   { code: "+90", country: "TR", flag: "🇹🇷", name: "Turkey" },
   { code: "+966", country: "SA", flag: "🇸🇦", name: "Saudi Arabia" },
   { code: "+972", country: "IL", flag: "🇮🇱", name: "Israel" },
