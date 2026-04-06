@@ -56,6 +56,7 @@ const portfolioCollection = defineCollection({
   }),
   schema: page.extend({
     images: z.array(z.string()).min(1).optional(),
+    imagesBgColor: z.string().optional(),
     options: z
       .object({
         layout: z.enum(["masonry", "grid", "full-width", "slider"]),
