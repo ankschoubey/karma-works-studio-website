@@ -64,5 +64,5 @@
 }
 
 .creative-hover-anim:hover .whatsapp-icon path {
-  fill: #25d366 !important;
+  fill: var(--color-accent) !important;
 }
