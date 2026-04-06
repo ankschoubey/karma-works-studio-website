@@ -92,7 +92,9 @@ const noteStyles = {
 const getJotFormFieldName = (input: any): string | undefined => {
   if (!isJotForm) return undefined;
   const key = toLowerCase(input.name || input.label || "");
-  return jotFormFieldMapping[key] || jotFormFieldMapping[input.name?.toLowerCase()];
+  return (
+    jotFormFieldMapping[key] || jotFormFieldMapping[input.name?.toLowerCase()]
+  );
 };
 ---
 
@@ -132,12 +134,26 @@ const getJotFormFieldName = (input: any): string | undefined => {
       <>
         <input type="hidden" name="formID" value="260951027493459" />
         <input type="hidden" name="simple_spc" value="260951027493459" />
-        <input type="hidden" name="uploadServerUrl" value="https://upload.jotform.com/upload" />
+        <input
+          type="hidden"
+          name="uploadServerUrl"
+          value="https://upload.jotform.com/upload"
+        />
         <input type="hidden" name="eventObserver" value="1" />
         <input type="hidden" id="JWTContainer" value="" />
         <input type="hidden" id="cardinalOrderNumber" value="" />
-        <input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="" />
-        <input type="hidden" id="submitSource" name="submitSource" value="unknown" />
+        <input
+          type="hidden"
+          id="jsExecutionTracker"
+          name="jsExecutionTracker"
+          value=""
+        />
+        <input
+          type="hidden"
+          id="submitSource"
+          name="submitSource"
+          value="unknown"
+        />
         <input type="hidden" id="buildDate" name="buildDate" value="" />
       </>
     )
@@ -166,7 +182,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
             <select
               {...(input.id ? { id: input.id } : {})}
               data-name={input.name || input.label || "Please set name value"}
-              {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
+              {...(isJotForm && getJotFormFieldName(input)
+                ? { "data-jotform-name": getJotFormFieldName(input) }
+                : {})}
               data-hs-select={JSON.stringify(
                 getPrelineSelectConfig({
                   placeholder: input.placeholder || "Please set placeholder",
@@ -198,7 +216,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
             {...(input.required ? { required: true } : {})}
-            {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
+            {...(isJotForm && getJotFormFieldName(input)
+              ? { "data-jotform-name": getJotFormFieldName(input) }
+              : {})}
             set:html={input.defaultValue || ""}
           />
         ) : input.items ? (
@@ -283,7 +303,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
                 class="hidden">
                 <option value="">Code</option>
                 {countryCodes.map((c) => (
-                  <option value={c.code}>{c.flag} {c.code}</option>
+                  <option value={c.code}>
+                    {c.flag} {c.code}
+                  </option>
                 ))}
               </select>
             </div>
@@ -293,7 +315,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
               placeholder={input.placeholder || "Phone Number"}
               class="form-input flex-1"
               {...(input.required ? { required: true } : {})}
-              {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
+              {...(isJotForm && getJotFormFieldName(input)
+                ? { "data-jotform-name": getJotFormFieldName(input) }
+                : {})}
             />
           </div>
         ) : (
@@ -304,7 +328,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
             {...(input.required ? { required: true } : {})}
-            {...(isJotForm && getJotFormFieldName(input) ? { "data-jotform-name": getJotFormFieldName(input) } : {})}
+            {...(isJotForm && getJotFormFieldName(input)
+              ? { "data-jotform-name": getJotFormFieldName(input) }
+              : {})}
           />
         )}
       </div>
@@ -336,43 +362,63 @@ const getJotFormFieldName = (input: any): string | undefined => {
 
 <div
   id="form-success-modal"
-  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden"
+  class="fixed inset-0 z-50 flex hidden items-center justify-center bg-black/50 backdrop-blur-sm"
   role="dialog"
   aria-modal="true"
-  aria-labelledby="success-modal-title"
->
-  <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 p-8 relative animate-[fadeIn_0.3s_ease-out]">
+  aria-labelledby="success-modal-title">
+  <div
+    class="relative mx-4 w-full max-w-md animate-[fadeIn_0.3s_ease-out] rounded-2xl bg-white p-8 shadow-2xl">
     <button
       id="close-success-modal"
       type="button"
-      class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-      aria-label="Close modal"
-    >
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      class="absolute top-4 right-4 text-gray-400 transition-colors hover:text-gray-600"
+      aria-label="Close modal">
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12">
+        </path>
       </svg>
     </button>
-    
+
     <div class="text-center">
-      <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      <div
+        class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+        <svg
+          class="h-8 w-8 text-green-600"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7">
+          </path>
         </svg>
       </div>
-      
-      <h3 id="success-modal-title" class="text-2xl font-bold text-gray-900 mb-4">
+
+      <h3
+        id="success-modal-title"
+        class="mb-4 text-2xl font-bold text-gray-900">
         Thank You!
       </h3>
-      
-      <p class="text-gray-600 leading-relaxed">
-        Your enquiry has been submitted successfully. Our team will review your details and get back to you within 24–48 hours. You'll receive a response on your provided contact information.
+
+      <p class="leading-relaxed text-gray-600">
+        Your enquiry has been submitted. Our team will carefully review your
+        requirements and get back to you within 24 hours with next steps.
       </p>
-      
+
       <button
         id="success-modal-close-btn"
         type="button"
-        class="mt-8 px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary/90 transition-colors"
-      >
+        class="bg-primary hover:bg-primary/90 mt-8 rounded-lg px-8 py-3 font-semibold text-white transition-colors">
         Got it
       </button>
     </div>
@@ -390,7 +436,7 @@ const getJotFormFieldName = (input: any): string | undefined => {
       transform: scale(1);
     }
   }
-  
+
   #form-success-modal:not(.hidden) {
     animation: fadeIn 0.3s ease-out;
   }
@@ -462,7 +508,9 @@ const getJotFormFieldName = (input: any): string | undefined => {
           return;
         }
 
-        const jotformNameInputs = form?.querySelectorAll("[data-jotform-name]") as NodeListOf<HTMLElement>;
+        const jotformNameInputs = form?.querySelectorAll(
+          "[data-jotform-name]",
+        ) as NodeListOf<HTMLElement>;
         jotformNameInputs?.forEach((input) => {
           const jotformName = input.getAttribute("data-jotform-name");
           if (jotformName) {
@@ -475,19 +523,23 @@ const getJotFormFieldName = (input: any): string | undefined => {
             const jotformName = tag.getAttribute("data-jotform-name");
             const dataName = tag.getAttribute("data-name");
             const textValue = tag.options[tag.selectedIndex]?.text || "";
-            
+
             if (dataName === "countryCode") {
               const countryCode = tag.value;
-              const phoneInput = form?.querySelector("input[type='tel'][name]") as HTMLInputElement | null;
+              const phoneInput = form?.querySelector(
+                "input[type='tel'][name]",
+              ) as HTMLInputElement | null;
               if (phoneInput && countryCode) {
                 phoneInput.value = countryCode + " " + phoneInput.value;
               }
               tag.removeAttribute("name");
               return;
             }
-            
+
             if (jotformName) {
-              let hiddenInput = form?.querySelector(`input[name="${jotformName}"]`) as HTMLInputElement | null;
+              let hiddenInput = form?.querySelector(
+                `input[name="${jotformName}"]`,
+              ) as HTMLInputElement | null;
               if (!hiddenInput) {
                 hiddenInput = document.createElement("input");
                 hiddenInput.type = "hidden";
@@ -500,12 +552,16 @@ const getJotFormFieldName = (input: any): string | undefined => {
           });
         }
 
-        const buildDate = form?.querySelector("#buildDate") as HTMLInputElement | null;
+        const buildDate = form?.querySelector(
+          "#buildDate",
+        ) as HTMLInputElement | null;
         if (buildDate) {
           buildDate.value = String(Date.now());
         }
 
-        const jsExecutionTracker = form?.querySelector("[name='jsExecutionTracker']") as HTMLInputElement | null;
+        const jsExecutionTracker = form?.querySelector(
+          "[name='jsExecutionTracker']",
+        ) as HTMLInputElement | null;
         if (jsExecutionTracker) {
           jsExecutionTracker.value = `build-date-${Date.now()}`;
         }

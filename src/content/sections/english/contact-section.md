@@ -109,20 +109,20 @@ form:
         search:
           placeholder: "Subject"
         items:
-          - label: "General Inquiry"
-            value: "General Inquiry"
+          - label: "▶︎ Build Web / Mobile / Ecommerce Apps"
+            value: "Build a Web, Mobile or Ecommerce App"
             selected: false
-          - label: "Partnership Opportunity"
-            value: "Partnership Opportunity"
+
+          - label: "Build Custom Project"
+            value: "Custom Project / Something Else"
             selected: false
-          - label: "Career Opportunity"
-            value: "Career Opportunity"
+
+          - label: "Improve / Maintain Existing System"
+            value: "Improve / Maintain an Existing System"
             selected: false
-          - label: "Investment Opportunity"
-            value: "Investment Opportunity"
-            selected: false
-          - label: "Media Inquiry"
-            value: "Media Inquiry"
+
+          - label: "Other Inquiries (Partnership, Career, Investment, Media)"
+            value: "Others: Partnership, Career, Investment & Press"
             selected: false
     - label: ""
       tag: "textarea"
