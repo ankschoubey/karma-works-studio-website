@@ -12,7 +12,7 @@
   logoHeight       = "41px"
   # Add a trailing slash at the end of URLs (e.g., https://example.com/, https://example.com/contact/)
   # Note: Manually restart your server when you change this value
-  trailingSlash    = true
+  trailingSlash = true
 
   [site.favicon]
     path  = "/images/favicons" # favicon images path (No need to change it)
@@ -58,10 +58,10 @@
   stickyHeader = true # Enables scroll-aware sticky behavior (e.g., hide on scroll down), not applicable to fixed headers
 
   # Contact form settings
-  # Available providers: "formspree", "formsubmit.co", "netlify"
-  # Available actions: "https://formspree.io/f/form_id", "https://formsubmit.co/your_email@example.com", "/"
-  contactFormAction   = "https://formsubmit.co/your_email@example.com"
-  contactFormProvider = "formsubmit.co"
+  # Available providers: "formspree", "formsubmit.co", "netlify", "jotform"
+  # Available actions: "https://formspree.io/f/form_id", "https://formsubmit.co/your_email@example.com", "https://submit.jotform.com/submit/form_id", "/"
+  contactFormAction   = "https://submit.jotform.com/submit/260951027493459"
+  contactFormProvider = "jotform"
 
   footerDescription = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the footer description in different languages or directly add value here if you are not using internationalization feature
 

@@ -16,6 +16,17 @@ const {
   settings: { contactFormAction, contactFormProvider },
 } = config;
 
+const isJotForm = contactFormProvider === "jotform";
+
+const jotFormFieldMapping: Record<string, string> = {
+  "first name": "q15_name15[first]",
+  "last name": "q15_name15[last]",
+  "email address": "q2_email",
+  "phone number": "q14_phoneNumber",
+  subject: "q10_typeA10",
+  message: "q13_howWe",
+};
+
 // Generate ID from label (Required for Input Radio and Checkbox)
 const genIdFromLabel = (label: string) => toLowerCase(label).replace(" ", "-");
 
@@ -76,6 +87,12 @@ const noteStyles = {
   deprecated: "border-[#4CAF50]/80 bg-[#F1F8F1]",
   hint: "border-[#8A2BE2]/80 bg-[#F4E6FF]",
 };
+
+const getJotFormFieldName = (input: any): string | undefined => {
+  if (!isJotForm) return undefined;
+  const key = toLowerCase(input.name || input.label || "");
+  return jotFormFieldMapping[key] || jotFormFieldMapping[input.name?.toLowerCase()];
+};
 ---
 
 <form
@@ -84,9 +101,9 @@ const noteStyles = {
     "data-action": contactFormAction,
     "data-provider": contactFormProvider,
     "data-netlify": contactFormProvider === "netlify" ? "true" : undefined,
-    action: contactFormProvider === "netlify" ? contactFormAction : undefined,
+    action: contactFormProvider === "netlify" ? undefined : contactFormAction,
+    method: isJotForm ? "post" : "post",
   }}
-  method="post"
   class:list={["grid grid-cols-2 gap-x-4 gap-y-6", Astro.props.class]}>
   {/* Some Hidden Inputs For Provider Like Netlify, Formspree Etc. */}
   {
@@ -106,6 +123,22 @@ const noteStyles = {
   {
     contactFormProvider === "formsubmit.co" && (
       <input type="hidden" name="_template" value="table" />
+    )
+  }
+
+  {
+    isJotForm && (
+      <>
+        <input type="hidden" name="formID" value="260951027493459" />
+        <input type="hidden" name="simple_spc" value="260951027493459" />
+        <input type="hidden" name="uploadServerUrl" value="https://upload.jotform.com/upload" />
+        <input type="hidden" name="eventObserver" value="1" />
+        <input type="hidden" id="JWTContainer" value="" />
+        <input type="hidden" id="cardinalOrderNumber" value="" />
+        <input type="hidden" id="jsExecutionTracker" name="jsExecutionTracker" value="" />
+        <input type="hidden" id="submitSource" name="submitSource" value="unknown" />
+        <input type="hidden" id="buildDate" name="buildDate" value="" />
+      </>
     )
   }
 
@@ -132,6 +165,7 @@ const noteStyles = {
             <select
               {...(input.id && { id: input.id })}
               data-name={input.name || input.label || "Please set name value"}
+              {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
               data-hs-select={JSON.stringify(
                 getPrelineSelectConfig({
                   placeholder: input.placeholder || "Please set placeholder",
@@ -163,6 +197,7 @@ const noteStyles = {
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
             {...(input.required && { required: true })}
+            {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
             set:html={input.defaultValue || ""}
           />
         ) : input.items ? (
@@ -243,6 +278,7 @@ const noteStyles = {
             placeholder={input.placeholder || "Please set placeholder"}
             class="form-input"
             {...(input.required && { required: true })}
+            {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
           />
         )}
       </div>
@@ -283,6 +319,10 @@ const noteStyles = {
     validateSelectTag,
   } from "@/lib/utils/HandleForm";
 
+  if (typeof window !== "undefined" && (window as any).HSSelect) {
+    (window as any).HSSelect.autoInit();
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById(
       "contact-form",
@@ -319,20 +359,69 @@ const noteStyles = {
     });
 
     form?.addEventListener("submit", async (e: Event) => {
-      e.preventDefault();
-
       const provider = form?.getAttribute("data-provider") || "";
       const action = form?.getAttribute("data-action") || "";
+
+      if (provider === "jotform") {
+        selectTags = form?.querySelectorAll(
+          "[input-wrapper]:not(.hidden) select[data-hs-select]",
+        ) as NodeListOf<HTMLSelectElement>;
+
+        selectTags.forEach(validateSelectTag);
+
+        if (!isFormFilled(form)) {
+          e.preventDefault();
+          return;
+        }
+
+        const jotformNameInputs = form?.querySelectorAll("[data-jotform-name]") as NodeListOf<HTMLElement>;
+        jotformNameInputs?.forEach((input) => {
+          const jotformName = input.getAttribute("data-jotform-name");
+          if (jotformName) {
+            input.setAttribute("name", jotformName);
+          }
+        });
+
+        if (selectTags) {
+          selectTags.forEach((tag) => {
+            const jotformName = tag.getAttribute("data-jotform-name");
+            const textValue = tag.options[tag.selectedIndex]?.text || "";
+            if (jotformName) {
+              let hiddenInput = form?.querySelector(`input[name="${jotformName}"]`) as HTMLInputElement | null;
+              if (!hiddenInput) {
+                hiddenInput = document.createElement("input");
+                hiddenInput.type = "hidden";
+                hiddenInput.name = jotformName;
+                form?.appendChild(hiddenInput);
+              }
+              hiddenInput.value = textValue;
+              tag.removeAttribute("name");
+            }
+          });
+        }
+
+        const buildDate = form?.querySelector("#buildDate") as HTMLInputElement | null;
+        if (buildDate) {
+          buildDate.value = String(Date.now());
+        }
+
+        const jsExecutionTracker = form?.querySelector("[name='jsExecutionTracker']") as HTMLInputElement | null;
+        if (jsExecutionTracker) {
+          jsExecutionTracker.value = `build-date-${Date.now()}`;
+        }
+
+        return;
+      }
+
+      e.preventDefault();
 
       selectTags = form?.querySelectorAll(
         "[input-wrapper]:not(.hidden) select[data-hs-select]",
       ) as NodeListOf<HTMLSelectElement>;
 
-      // Validate all preline select tags
       selectTags.forEach(validateSelectTag);
 
       if (isFormFilled(form)) {
-        // Console form data for debugging
         const formData = Object.fromEntries(new FormData(form).entries());
         console.log(
           Object.entries(formData)

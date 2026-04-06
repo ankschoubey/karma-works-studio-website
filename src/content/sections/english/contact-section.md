@@ -74,46 +74,40 @@ form:
   #   Your data is safe with us. We respect your privacy and never share your information. <br /> Read our [Privacy Policy](/privacy-policy/).
   inputs:
     - label: ""
-      placeholder: "Full Name *"
-      name: "Full Name" # This is crucial. Its indicate under which name you want to receive this field data
+      placeholder: "First Name *"
+      name: "First Name"
+      required: true
+      halfWidth: true
+      defaultValue: ""
+    - label: ""
+      placeholder: "Last Name *"
+      name: "Last Name"
       required: true
       halfWidth: true
       defaultValue: ""
     - label: ""
       placeholder: "Email Address *"
-      name: "Email Address" # This is crucial. Its indicate under which name you want to receive this field data
+      name: "Email Address"
       required: true
       type: "email"
       halfWidth: true
       defaultValue: ""
     - label: ""
-      placeholder: "Subject *"
-      name: "Subject" # This is crucial. Its indicate under which name you want to receive this field data
-      required: false
+      placeholder: "Phone Number *"
+      name: "Phone Number"
+      required: true
+      type: "tel"
       halfWidth: true
-      dropdown:
-        type: "" # select | search - default is select
-        search: # if type is search then it will work
-          placeholder: ""
-        items:
-          - label: "General Inquiry"
-            value: "General Inquiry"
-            selected: false
-          - label: "Partnership Opportunity"
-            value: "Partnership Opportunity"
-            selected: false
-          - label: "Investment Opportunity"
-            value: "Investment Opportunity"
-            selected: false
+      defaultValue: ""
     - label: ""
-      placeholder: "Subject With Search *"
-      name: "Subject With Search" # This is crucial. Its indicate under which name you want to receive this field data
-      required: false
-      halfWidth: true
+      placeholder: "Subject *"
+      name: "Subject"
+      required: true
+      halfWidth: false
       dropdown:
-        type: "search" # select | search - default is select
-        search: # if type is search then it will work
-          placeholder: "Subject With Search"
+        type: "search"
+        search:
+          placeholder: "Subject"
         items:
           - label: "General Inquiry"
             value: "General Inquiry"
@@ -133,9 +127,9 @@ form:
     - label: ""
       tag: "textarea"
       defaultValue: ""
-      rows: "2" # Only work if tag is textarea
+      rows: "4"
       placeholder: "How can we help you *"
-      name: "Message" # This is crucial. Its indicate under which name you want to receive this field data
+      name: "Message"
       required: true
       halfWidth: false
     - label: "Google Search" # only valid for type="checkbox" & type === "radio"
