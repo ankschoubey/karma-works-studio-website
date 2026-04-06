@@ -90,14 +90,14 @@ form:
       name: "Email Address"
       required: true
       type: "email"
-      halfWidth: true
+      halfWidth: false
       defaultValue: ""
     - label: ""
       placeholder: "Phone Number *"
       name: "Phone Number"
       required: true
       type: "tel"
-      halfWidth: true
+      halfWidth: false
       defaultValue: ""
     - label: ""
       placeholder: "Subject *"

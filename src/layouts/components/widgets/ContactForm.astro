@@ -5,6 +5,7 @@ import type { z } from "astro/zod";
 import type { contactFormSchema } from "@/sections.schema";
 import type { inputFieldSchema } from "@/sections.schema";
 import { getPrelineSelectConfig } from "@/lib/utils/preline";
+import { countryCodes } from "@/lib/utils/countryCodes";
 import config from "@generated/config.generated.json" assert { type: "json" };
 
 interface Props {
@@ -268,6 +269,33 @@ const getJotFormFieldName = (input: any): string | undefined => {
             ]}
             set:html={markdownify(input.content || "", true)}
           />
+        ) : (input as any).type === "tel" ? (
+          <div class="flex gap-2">
+            <div class="w-28 shrink-0">
+              <select
+                data-name="countryCode"
+                data-hs-select={JSON.stringify(
+                  getPrelineSelectConfig({
+                    placeholder: "Code",
+                    hasSearch: true,
+                  }),
+                )}
+                class="hidden">
+                <option value="">Code</option>
+                {countryCodes.map((c) => (
+                  <option value={c.code}>{c.flag} {c.code}</option>
+                ))}
+              </select>
+            </div>
+            <input
+              type="tel"
+              name={input.name || input.label || "Please set name value"}
+              placeholder={input.placeholder || "Phone Number"}
+              class="form-input flex-1"
+              {...(input.required && { required: true })}
+              {...(isJotForm && getJotFormFieldName(input) && { "data-jotform-name": getJotFormFieldName(input) })}
+            />
+          </div>
         ) : (
           <input
             {...(input.defaultValue && {
@@ -385,7 +413,19 @@ const getJotFormFieldName = (input: any): string | undefined => {
         if (selectTags) {
           selectTags.forEach((tag) => {
             const jotformName = tag.getAttribute("data-jotform-name");
+            const dataName = tag.getAttribute("data-name");
             const textValue = tag.options[tag.selectedIndex]?.text || "";
+            
+            if (dataName === "countryCode") {
+              const countryCode = tag.value;
+              const phoneInput = form?.querySelector("input[type='tel'][name]") as HTMLInputElement | null;
+              if (phoneInput && countryCode) {
+                phoneInput.value = countryCode + " " + phoneInput.value;
+              }
+              tag.removeAttribute("name");
+              return;
+            }
+            
             if (jotformName) {
               let hiddenInput = form?.querySelector(`input[name="${jotformName}"]`) as HTMLInputElement | null;
               if (!hiddenInput) {

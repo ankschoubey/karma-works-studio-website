@@ -47,7 +47,7 @@ export const inputFieldSchema = z.object({
   selected: z.boolean().optional(),
   value: z.boolean().optional(),
   checked: z.boolean().optional(),
-  type: z.enum(["text", "email", "radio", "checkbox"]).optional(),
+  type: z.enum(["text", "email", "tel", "radio", "checkbox"]).optional(),
   id: z.string().optional(),
   tag: z.literal("textarea").optional(),
   rows: z.string().optional(),
