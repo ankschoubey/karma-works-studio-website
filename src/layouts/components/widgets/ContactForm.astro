@@ -304,7 +304,7 @@ const getJotFormFieldName = (input: any): string | undefined => {
                 <option value="">Code</option>
                 {countryCodes.map((c) => (
                   <option value={c.code}>
-                    {c.flag} {c.code}
+                    {c.flag} {c.code} {c.name}
                   </option>
                 ))}
               </select>
