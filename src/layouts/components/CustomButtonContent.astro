@@ -11,8 +11,10 @@ if (
 }
 ---
 
-{icon && <span class="" set:html={icon} />}
-<Fragment set:html={label} />
-{addAriaLabel && <span class="sr-only" set:html={title} />}
+<span class="inline-flex items-center gap-2 align-bottom">
+  {icon && <span set:html={icon} />}
+  <span><Fragment set:html={label} /></span>
+  {addAriaLabel && <span class="sr-only" set:html={title} />}
+</span>
 
 {isCreativeHoverEffect && <span class="hover-bg" />}
