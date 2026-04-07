@@ -85,7 +85,7 @@
   [settings.contactInfo]
     address = "Navi Mumbai, India 🇮🇳"
     phone   = "[+91 816 994 9676](tel:+918169949676)"
-#    email   = "[hello@karmaworks.studio](mailto:hello@karmaworks.studio)"
+    #    email   = "[hello@karmaworks.studio](mailto:hello@karmaworks.studio)"
 
   # Header Offcanvas Configuration
   # Update social links in `src/config/social.json`

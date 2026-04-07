@@ -51,10 +51,18 @@ if (!enable) {
         </div>
       )
     }
-    <ul class:list={["flex flex-wrap justify-center outline outline-1", isDarkAppearance && "outline-white"]}>
+    <ul
+      class:list={[
+        "flex flex-wrap justify-center outline outline-1",
+        isDarkAppearance && "outline-white",
+      ]}>
       {
         list?.map((item) => (
-          <li class:list={["group flex h-32 w-full items-center justify-center border", isDarkAppearance && "border-white"]}>
+          <li
+            class:list={[
+              "group flex h-32 w-full items-center justify-center border",
+              isDarkAppearance && "border-white",
+            ]}>
             <div class="relative h-8 w-32 overflow-hidden px-4">
               <OptimizedImage
                 width={140}

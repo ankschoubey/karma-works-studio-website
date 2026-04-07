@@ -2,6 +2,7 @@
 import { markdownify, toSentenceCase } from "@/lib/utils/textConverter";
 import { getLocaleUrlCTM, useTranslations } from "@/lib/utils/i18nUtils";
 import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import CustomButton from "@/components/CustomButton.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
@@ -36,42 +37,28 @@ const isDarkAppearance = options?.appearance === "dark";
 
 {
   layout === "masonry" || layout === "grid" ? (
-    <div
+    <a
+      title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
       class:list={[
         className,
-        "group space-y-4",
+        "group block space-y-4",
         layout === "grid" && "flex flex-col items-center text-center",
         isDarkAppearance ? "text-white" : "text-text-default",
       ]}
+      href={slug}
       {...rest}>
       {image && (
-        <a
-          title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
-          class="w-full overflow-hidden"
-          href={slug}
-          {...{
-            "data-aos":
-              index !== undefined &&
-              ["reveal-anim-left", "reveal-anim-right", "reveal-anim-top"][
-                index % 3
-              ],
-          }}>
+        <div class="w-full overflow-hidden">
           <OptimizedImage
             src={image}
             alt={title || "Project image"}
-            class="h-64 md:h-80 w-full object-contain transition duration-500 group-hover:translate-x-2"
+            class="h-64 w-full object-contain transition duration-500 group-hover:translate-x-2 md:h-80"
           />
-        </a>
+        </div>
       )}
 
       {title && (
-        <h3 class="text-h3-sm md:text-h3 leading-snug text-inherit">
-          <a
-            href={slug}
-            title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}>
-            {title}
-          </a>
-        </h3>
+        <h3 class="text-h3-sm md:text-h3 leading-snug text-inherit">{title}</h3>
       )}
 
       {hasCategories && (
@@ -89,8 +76,21 @@ const isDarkAppearance = options?.appearance === "dark";
         </ul>
       )}
 
-      {description && <p class="text-pretty" set:html={markdownify(description)} />}
-    </div>
+      {description && (
+        <>
+          <p class="text-pretty" set:html={markdownify(description)} />
+          <div class="mt-4 flex justify-center">
+            <CustomButton
+              label="See How It Was Built"
+              url={`/portfolio/${customSlug || id}`}
+              variant="fill"
+              hoverEffect="creative-fill"
+              class="effect-color-accent"
+            />
+          </div>
+        </>
+      )}
+    </a>
   ) : layout === "slider" ? (
     <div class="py-8 text-center text-sm text-gray-400 italic">
       "Slider Layout" is only available in the Pro version. Purchase Folex

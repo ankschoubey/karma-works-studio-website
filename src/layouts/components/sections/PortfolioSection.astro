@@ -35,7 +35,12 @@ let actualContent = overrideObjects(
 const t = await useTranslations(Astro.currentLocale as string);
 
 // Extracting required values from 'content' object
-let { enable = true, title, description, options } = actualContent as PortfolioInterface;
+let {
+  enable = true,
+  title,
+  description,
+  options,
+} = actualContent as PortfolioInterface;
 
 const { layout, appearance, limit } = options || {};
 

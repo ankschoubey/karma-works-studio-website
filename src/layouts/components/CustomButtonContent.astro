@@ -11,14 +11,18 @@ if (
 }
 ---
 
-{icon && icon.trim() && !label ? (
-  <span set:html={icon} />
-) : (
-  <span class="inline-flex items-center gap-2 align-bottom">
-    {icon && icon.trim() && <span set:html={icon} />}
-    <span><Fragment set:html={label} /></span>
-    {addAriaLabel && <span class="sr-only" set:html={title} />}
-  </span>
-)}
+{
+  icon && icon.trim() && !label ? (
+    <span set:html={icon} />
+  ) : (
+    <span class="inline-flex items-center gap-2 align-bottom">
+      {icon && icon.trim() && <span set:html={icon} />}
+      <span>
+        <Fragment set:html={label} />
+      </span>
+      {addAriaLabel && <span class="sr-only" set:html={title} />}
+    </span>
+  )
+}
 
 {isCreativeHoverEffect && <span class="hover-bg" />}
