@@ -1,6 +1,6 @@
 ---
-title: "What we have built for our clients"
-description: Our work is intentionally depth-first. Svaaya was built over 4 months through iterative development across frontend and backend, continuously refined to meet real-world usage needs.
+title: "What our clients achieved"
+subtitle: And what this means for you.
 enable: true
 
 options:

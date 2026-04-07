@@ -180,6 +180,7 @@ export const bannerAgencySectionSchema = z
       })
       .partial()
       .optional(),
+    subdescription: z.string().optional(),
   })
   .optional();
 

@@ -7,7 +7,8 @@ title: "<span class='text-xl md:text-5xl'>  Plan <span class='text-[#E4FF02] mx-
 
 image: "/images/banner/programmer.jpg"
 imageCredits:
-description: 'We turn ideas into <span class="font-semibold text-[#E4FF02]">scalable software</span>— from <span class="font-medium text-gray-200">MVP to production</span>, <br>built to handle real users and growth..'
+description: '
+We help <span class="font-semibold text-[#E4FF02]">founders</span> launch <span class="font-semibold text-[#E4FF02]">production-ready products</span> — without tech headaches or costly rebuilds later.'
 
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
