@@ -59,10 +59,6 @@
 }
 
 .whatsapp-icon path {
-  fill: var(--color-dark);
+  fill: currentColor;
   transition: fill 0.3s ease;
-}
-
-.creative-hover-anim:hover .whatsapp-icon path {
-  fill: var(--color-accent) !important;
 }
