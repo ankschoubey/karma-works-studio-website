@@ -80,7 +80,7 @@ if (Array.isArray(information)) {
             }}>
             <SwiperWrapper>
               {images.map((item: string, index: number) => (
-                <SwiperSlide class="h-auto!">
+                <SwiperSlide class="h-auto!" style={imagesBgColor ? { backgroundColor: imagesBgColor } : undefined}>
                   <OptimizedImage
                     src={item}
                     alt={`${title} image ${index + 1}`}
