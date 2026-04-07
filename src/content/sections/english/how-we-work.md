@@ -1,10 +1,10 @@
 ---
 enable: true
-title: "How We Work"
+title: "What Working With Us Actually Looks Like"
 
-subtitle: "Simple. Structured. Built for steady progress."
+subtitle: "No mystery. No scope creep. No 'we'll figure it out' moments. Here's exactly what happens after you contact us."
 
-closingText: "We don't overpromise. We scope clearly, build carefully, and deliver what's agreed—no surprises."
+closingText: "We've structured everything so that if we don't deliver what was agreed, it costs us — not you."
 
 list:
   - enable: true
@@ -34,8 +34,8 @@ list:
       - "Regular calls are used when needed during <b class='text-[#3d7d1f]'>requirement gathering</b> or for clarifications"
 
   - enable: true
-    title: "Reliable Delivery"
-    description: "Built well. Supported after."
+    title: "Delivered. Supported. Yours to Keep."
+    description: "Full codebase handover. No lock-in. 30-day support window included on every engagement."
     items:
       - "Built using <b class='text-[#3d7d1f]'>AI, agile practices</b>, and high-quality engineering"
       - "Each deliverable goes through <b class='text-[#3d7d1f]'>expert review and validation</b> before handover"

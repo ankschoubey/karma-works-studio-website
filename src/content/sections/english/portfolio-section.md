@@ -1,6 +1,6 @@
 ---
-title: "What our clients achieved"
-subtitle: And what this means for you.
+title: "Proof, Not Promises"
+subtitle: "One case study done right beats ten logos with no context. Here's what we actually built, how long it took, and what the result was."
 enable: true
 
 options:

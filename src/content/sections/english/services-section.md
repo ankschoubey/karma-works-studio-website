@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "What We Build"
+title: "What We Ship for You"
 # sectionDirection: "horizontal" # horizontal | vertical
 
 options:
