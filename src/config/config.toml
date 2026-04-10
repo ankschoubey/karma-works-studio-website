@@ -1,9 +1,9 @@
 # Site Configuration
 [site]
   title            = "Karma Works Studio"
-  description      = "We design and develop focused digital products — from idea to execution."
-  tagline          = "Creative Software Development Agency"
-  taglineSeparator = "" # default is " - "
+  description      = "Karma Works builds your MVP in 90 days with fixed-scope sprints, weekly demos, and a 50/50 payment structure. No surprises. Full codebase handover. Based in Navi Mumbai."
+  tagline          = "MVP Development Agency, Navi Mumbai"
+  taglineSeparator = " - " # default is " - "
   baseUrl          = "https://karmaworksstudio.com/"
   logo             = "/images/logo.png" # Path to the site's logo
   logoAlternate    = "/images/logo-light.png" # Path to the site's alternate logo
@@ -54,6 +54,7 @@
   blogFolder      = "blog" # Folder where blog posts are stored
   servicesFolder  = "services" # Folder where services are stored
   portfolioFolder = "portfolio" # Folder where portfolio/projects are stored
+  demosFolder     = "demos" # Folder where demos are stored
 
   stickyHeader = true # Enables scroll-aware sticky behavior (e.g., hide on scroll down), not applicable to fixed headers
 
