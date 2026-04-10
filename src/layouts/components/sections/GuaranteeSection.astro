@@ -1,0 +1,41 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  class:list={[
+    "guarantee-section",
+    className,
+    "my-0 overflow-hidden border border-yellow-300/30 pt-12",
+  ]}>
+  <div
+    class="scarcity-bar flex flex-wrap items-center justify-between gap-4 bg-[#E4FF02] px-12 py-4">
+    <span class="text-sm font-medium text-[#1a1a1a]">
+      We take on 2 client projects at a time.
+    </span>
+    <a
+      href="https://wa.me/918169949676"
+      class="text-sm font-medium text-[#1a1a1a] no-underline hover:underline">
+      Check Q2 availability →
+    </a>
+  </div>
+  <div class="guarantee-inner bg-black px-12 py-10 md:px-10 lg:px-12">
+    <span
+      class="guarantee-label mb-4 block text-[11px] tracking-widest text-brand uppercase">
+      Our Guarantee
+    </span>
+    <h2 class="mb-4 text-2xl font-semibold text-white">
+      If it doesn't match the scope, we fix it free.
+    </h2>
+    <p class="max-w-300 text-[15px] leading-relaxed text-white/60">
+      Every <b class="text-brand">Statement of Work</b> is agreed and signed before
+      we begin. We don't close a sprint until the deliverable matches what was scoped.
+      You hold the final payment until you're satisfied — that's not a policy, it's
+      how we're structured.
+    </p>
+  </div>
+</section>

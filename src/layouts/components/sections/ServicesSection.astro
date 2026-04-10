@@ -12,6 +12,10 @@ import type { servicesSectionSchema } from "@/sections.schema";
 type Service = {
   title: string;
   description: string;
+  showcaseProject?: string;
+  showcaseDemo?: string;
+  showcaseImage?: string;
+  demoSlug?: string;
 };
 
 type ServicesInterface = Section & z.infer<typeof servicesSectionSchema>;
@@ -37,7 +41,6 @@ let actualContent = overrideObjects(
 let {
   enable = true,
   title,
-  sectionDirection = "vertical",
   options: { layout = "accordion", appearance, limit = false } = {},
 } = actualContent as ServicesInterface;
 
@@ -50,13 +53,14 @@ if (layout === "accordion") {
     return {
       title: service.data.title,
       description: service.data.description,
+      showcaseProject: service.data.showcaseProject,
+      showcaseDemo: service.data.showcaseDemo,
+      showcaseImage: service.data.showcaseImage,
+      demoSlug: service.data.demoSlug,
     };
   }) as Service[];
 }
 
-const isHorizontalSection = sectionDirection === "horizontal";
-
-// limit the number of services to be displayed
 services = limit ? services.slice(0, limit as number) : services;
 
 if (!enable) {
@@ -65,18 +69,12 @@ if (!enable) {
 ---
 
 <section id="services">
-  <div
-    class:list={[
-      "container",
-      isHorizontalSection
-        ? "grid grid-cols-1 items-start space-y-14 gap-x-10 lg:grid-cols-2 lg:space-y-0"
-        : "space-y-14",
-    ]}>
+  <div class="container space-y-14">
     {
       title && (
         <h2
           class:list={[
-            "text-h1-sm md:text-h1 mx-auto max-w-3xl",
+            "text-h1-sm md:text-h1 mx-auto max-w-3xl text-center",
             appearance === "dark" && "text-light",
             isHorizontalSection ? "lg:sticky lg:top-32" : "text-center",
           ]}
@@ -93,13 +91,12 @@ if (!enable) {
             return (
               <div
                 class:list={[
-                  "hs-accordion relative border-b py-6 text-start first:border-t lg:pe-20",
-                  "transition-all duration-300 lg:flex lg:flex-row lg:items-start lg:justify-between lg:gap-16",
+                  "hs-accordion relative border-b py-6 text-start first:border-t",
                   index === 0 && "active",
                 ]}
                 id={"accordion-" + id}>
                 <div
-                  class="font-secondary mt-2.5 mb-4 text-2xl font-semibold lg:mb-0 lg:text-sm"
+                  class="font-secondary mt-2.5 mb-4 text-2xl font-semibold lg:text-sm"
                   set:html={(index <= 9 ? "0" : "") + (index + 1)}
                 />
                 <button
@@ -110,7 +107,7 @@ if (!enable) {
                   title="show or hide accordion content"
                   aria-controls={"accordion-content-" + id}
                   aria-expanded={index === 0 ? "true" : "false"}
-                  class="hs-accordion-toggle text-dark font-secondary text-h5 w-full pe-20 text-start font-medium lg:pe-0"
+                  class="hs-accordion-toggle text-dark font-secondary text-h5 w-full pe-10 text-start font-medium"
                   set:html={item.title}
                 />
                 <div
@@ -118,11 +115,44 @@ if (!enable) {
                   id={"accordion-content-" + id}
                   aria-labelledby={"accordion-" + id}
                   class:list={[
-                    "hs-accordion-content hs-accordion-active:opacity-100 w-full max-w-lg overflow-hidden opacity-0 transition-all duration-300 ease-linear",
+                    "hs-accordion-content hs-accordion-active:opacity-100 w-full max-w-2xl overflow-hidden opacity-0 transition-all duration-300 ease-linear",
                     index !== 0 && "hidden",
                   ]}>
-                  <div class="prose-styles prose-p:first:mt-0 prose-p:last:mb-0 pt-3 lg:pt-0">
-                    <div set:html={markdownify(item.description, true)} />
+                  <div
+                    class:list={[
+                      "prose-styles prose-p:first:mt-0 prose-p:last:mb-0 pt-3 lg:pt-0",
+                      item.showcaseImage && "grid grid-cols-1 gap-6 lg:grid-cols-5 lg:items-start",
+                    ]}>
+                    {item.showcaseImage && (
+                      <div class="order-1 lg:order-1 lg:col-span-3">
+                        <img
+                          src={item.showcaseImage}
+                          alt={item.title}
+                          class="w-full rounded-lg object-cover aspect-video"
+                        />
+                      </div>
+                    )}
+                    <div class={item.showcaseImage ? "order-2 lg:order-2 lg:col-span-2" : ""}>
+                      <div set:html={markdownify(item.description, true)} />
+                      {(item.showcaseProject || item.demoSlug) && (
+                        <div class="mt-4 flex flex-wrap gap-4">
+                          {item.showcaseProject && (
+                            <a
+                              href={`/portfolio/${item.showcaseProject}`}
+                              class="btn btn-primary creative-hover-anim effect-color-primary">
+                              View Project
+                            </a>
+                          )}
+                          {item.demoSlug && (
+                            <a
+                              href={`/demos/${item.demoSlug}`}
+                              class="btn btn-outline creative-hover-anim effect-color-dark">
+                              View Demo
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 

@@ -81,7 +81,7 @@ const isDarkAppearance = options?.appearance === "dark";
           <p class="text-pretty" set:html={markdownify(description)} />
           <div class="mt-4 flex justify-center">
             <CustomButton
-              label="See How It Was Built"
+              label={t("common.portfolioCta") || "Read the Full Case Study →"}
               url={`/portfolio/${customSlug || id}`}
               variant="fill"
               hoverEffect="creative-fill"

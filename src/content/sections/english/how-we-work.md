@@ -8,16 +8,16 @@ closingText: "We've structured everything so that if we don't deliver what was a
 
 list:
   - enable: true
-    title: "Focused Execution"
-    description: "Small batches. Steady progress."
+    title: "You Know What Ships Before We Start"
+    description: "Every sprint is scoped, priced, and signed off before we write a line of code."
     items:
       - "Work is broken into small, clearly scoped <b class='text-[#3d7d1f]'>Statements of Work (SoWs)</b>"
       - "Only a <b class='text-[#3d7d1f]'>limited number</b> of SoWs are active at a time"
       - "Built in <b class='text-[#3d7d1f]'>iterations</b>, where we refine as we build to ensure the final output matches expectations"
 
   - enable: true
-    title: "Bespoke Pricing"
-    description: "No fluff. You pay for what gets built."
+    title: "No Surprise Invoices. Ever."
+    description: "50% to start. 50% when you're satisfied with delivery. That's the whole deal."
     items:
       - "Each SoW is <b class='text-[#3d7d1f]'>quoted and approved separately</b>"
       - "You only pay for work when a <b class='text-[#3d7d1f]'>SoW begins</b>"
@@ -25,8 +25,8 @@ list:
       - "Each SoW is closed with <b class='text-[#3d7d1f]'>delivery and final payment</b>"
 
   - enable: true
-    title: "Clear Communication"
-    description: "No guesswork. Everything stays aligned."
+    title: "Weekly Demos, Not Monthly Surprises"
+    description: "You see working software every week. If something's off, we fix it before it compounds."
     items:
       - "Async-first communication with clear, written updates at every step"
       - "We believe in overcommunication to ensure decisions and context are never unclear"

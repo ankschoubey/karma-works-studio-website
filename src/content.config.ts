@@ -44,6 +44,10 @@ const serviceCollection = defineCollection({
   }),
   schema: page.extend({
     icon: z.string().optional(),
+    showcaseProject: z.string().optional(),
+    showcaseDemo: z.string().optional(),
+    showcaseImage: z.string().optional(),
+    demoSlug: z.string().optional(),
   }),
 });
 
@@ -82,6 +86,13 @@ export const collections = {
   services: serviceCollection,
   [portfolioFolder]: portfolioCollection,
   portfolio: portfolioCollection,
+  demos: defineCollection({
+    loader: glob({ base: "./src/content/demos", pattern: "**/*.{md,mdx}" }),
+    schema: page.extend({
+      demoUrl: z.string(),
+      password: z.string().optional(),
+    }),
+  }),
 
   pages: pagesCollection,
   sections: defineCollection({

@@ -131,14 +131,14 @@ export const servicesSectionSchema = z
   .object({
     enable: z.boolean().default(false).optional(),
     title: z.string().optional(),
-    sectionDirection: z.enum(["horizontal", "vertical"]).optional(),
     options: z
       .object({
         layout: z.enum(["grid", "accordion"]),
         appearance: AppearanceEnum,
         limit: z.union([z.number(), z.literal(false)]),
-        column: z.union([z.literal(1), z.literal(2), z.literal(3)]).optional(),
-        iconPlacement: z.enum(["top", "right"]).optional(),
+        showcaseProject: z.string().optional(),
+        showcaseDemo: z.string().optional(),
+        showcaseLabel: z.string().optional(),
       })
       .partial()
       .optional(),

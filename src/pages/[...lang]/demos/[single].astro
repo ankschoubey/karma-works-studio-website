@@ -1,0 +1,86 @@
+---
+import Base from "@/layouts/Base.astro";
+import extractSlug from "@/lib/utils/extractSlug";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { supportedLanguages } from "@/lib/utils/i18nUtils";
+import { markdownify } from "@/lib/utils/textConverter";
+import config from "@generated/config.generated.json" assert { type: "json" };
+import type { CollectionKey } from "astro:content";
+
+export async function getStaticPaths() {
+  const paths = await Promise.all(
+    supportedLanguages.map(async (lang) => {
+      const { defaultLanguage, showDefaultLangInUrl } = config.settings.multilingual;
+      const demoKey = "demos" as CollectionKey;
+
+      const demosIndex = await getEntryCTM(demoKey, "-index", lang.languageCode);
+      let demos = await getCollectionCTM(demoKey, lang.languageCode);
+
+      if (demosIndex?.data.draft && import.meta.env.PROD) {
+        return [];
+      }
+
+      return demos.map((demo) => ({
+        params: {
+          lang:
+            lang.languageCode === defaultLanguage && !showDefaultLangInUrl
+              ? undefined
+              : lang.languageCode,
+          single: extractSlug(demo).split("/").pop(),
+        },
+        props: {
+          demo,
+        },
+      }));
+    }),
+  );
+
+  return paths.flat();
+}
+
+const { demo } = Astro.props;
+const { data } = demo;
+---
+
+<Base {...data}>
+  <section class="py-16">
+    <div class="container">
+      <div class="mx-auto max-w-4xl">
+        {
+          data.image && (
+            <div class="mb-8">
+              <img
+                src={data.image}
+                alt={data.title}
+                class="w-full rounded-lg object-cover"
+              />
+            </div>
+          )
+        }
+
+        <div class="prose-styles">
+          <div set:html={markdownify(data.description || "", true)} />
+
+          {data.demoUrl && (
+            <div class="mt-8 flex flex-col gap-4 rounded-lg bg-gray-50 p-6">
+              <h3 class="text-h3">Demo Access</h3>
+              <a
+                href={data.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary inline-block w-fit">
+                Open Demo
+              </a>
+              {data.password && (
+                <p class="text-gray-600">
+                  Password: <code class="rounded bg-gray-200 px-2 py-1">{data.password}</code>
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

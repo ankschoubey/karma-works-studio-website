@@ -18,6 +18,10 @@
   @apply bg-primary text-light;
 }
 
+@utility btn-outline {
+  @apply border-dark bg-dark text-light border;
+}
+
 .creative-hover-anim:not([disabled="true"]) {
   @apply relative z-10 overflow-hidden delay-100;
 

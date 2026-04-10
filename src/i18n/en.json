@@ -5,7 +5,8 @@
     "paginationPrevious": "Previous",
     "paginationNext": "Next",
     "paginationPortfolioPrev": "Previous Portfolio",
-    "paginationPortfolioNext": "Next Portfolio"
+    "paginationPortfolioNext": "Next Portfolio",
+    "portfolioCta": "Read the Full Case Study →"
   },
   "headerOffcanvas": {
     "description": "We are a software development agency that helps businesses create polished products.",
